@@ -209,24 +209,37 @@ Our findings yield mixed results as in figure 4. Selecting the subtree using eit
 ## Interpretability of Models
 Lastly, we analyze the importance of variables as deemed by our models. For tree-based methods, we aggregated the relative importance as measured by the corresponding packages for each forecast horizon. And for lasso logit, we counted the number of times each variable was selected within a given forecast horizon. For the purpose of this analysis, we broke down which variables were important in the short-term forecast as opposed to the long-term forecast. And we did so by comparing variable importance in the one-step horizon forecast to the latest attainable forecast horizon (usually twelve-step forecast horizon). Moreover, we separated variable importance by linear and non-linear predictors to see if non-linear predictors are important predictors.
 
-**Figure 5** PLACEHOLDER
-**Note:** Variable importance for tree one-step horizon (top left) & six-step horizon (top right). Variables selected for lasso logit one-step horizon (bottom left) & twelve-step horizon (bottom right). Not exhaustive. 
+**Figure 5** 
+
+![Image 1 of Figure 5](https://github.com/hunglung2960/A-SUPERVISED-LEARNING-APPROACH-TO-PREDICTING-INDEX-DIRECTION/blob/c48847837768ba8a302a3bcfba357a3a7f42b6f4/Plot/tree1c.png)
+
+![Image 2 of Figure 5](https://github.com/hunglung2960/A-SUPERVISED-LEARNING-APPROACH-TO-PREDICTING-INDEX-DIRECTION/blob/c48847837768ba8a302a3bcfba357a3a7f42b6f4/Plot/tree6c.png)
+
+![Image 3 of Figure 5](https://github.com/hunglung2960/A-SUPERVISED-LEARNING-APPROACH-TO-PREDICTING-INDEX-DIRECTION/blob/c48847837768ba8a302a3bcfba357a3a7f42b6f4/Plot/ll1.png)
+
+![Image 4 of Figure 5](https://github.com/hunglung2960/A-SUPERVISED-LEARNING-APPROACH-TO-PREDICTING-INDEX-DIRECTION/blob/c48847837768ba8a302a3bcfba357a3a7f42b6f4/Plot/ll12.png)
+
+
+**Note:** Variable importance for tree one-step horizon (First Image) & six-step horizon (Second Image). Variables selected for lasso logit one-step horizon (Third Image) & twelve-step horizon (Fourth Image). Not exhaustive. 
 
 We identified predictors that were important across multiple models in the one-step & latest step forecast horizon. Figure 5 shows the variable importance for our leading models but is not an exhaustive illustration of all importance measures used. It was found that inflation (infl), S&P 500 index returns with dividend (CRSP_SPvw), 12-month moving sums of earnings on the S&P 500 index (E12), real M2 money stock (M2REAL), the ratio of book value to market value for the Dow Jones Industrial Average (b/m), and industrial production of consumer goods (IPCONGD) were important in predicting short-term directions. These variables consist of a good mix of financial indicators as well as macroeconomic indicators.
 
 As for important long-term predictors, we found inflation (infl), real M2 money stock (M2REAL), industrial production of nondurable materials (IPNMAT), industrial production of materials (IPMAT), industrial production of manufactured goods (IPMANSICS), industrial production index (INDPRO), and industrial production of fuels (IPFUELS) to be important. The long-term predictors consist mainly of macroeconomic indicators with some financial indicators. This could be supported by economic theory which believes that growth in the long term is fueled by production capabilities. We also found that once non-linear terms were re-introduced, the importance variables were dominated by non-linear predictors. This suggests that nonlinear models that can capture nonlinearity and handle high dimensions may be better suited to forecasting S&P index direction than conventional linear models. 
 
-**Figure 6** PLACEHOLDER
+**Figure 6** 
+
+![Image 1 of Figure 6](https://github.com/hunglung2960/A-SUPERVISED-LEARNING-APPROACH-TO-PREDICTING-INDEX-DIRECTION/blob/c48847837768ba8a302a3bcfba357a3a7f42b6f4/Plot/rf1.png)
+
 **Note:** Top 10 class-specific importance measure for one-step forecast horizon random forest computed as mean decrease in accuracy. 
 
 The importance measure by the randomforest package computes variable importance as mean decrease in accuracy. This is useful for us to understand which variables are important in predicting across classes 0 & 1. And we do so by comparing across importance measures for random forest and bagging as in figure 2 and figure 6. Results reveal that there are many variables important for classifying 1's but few that help classify 0's. This explains why most of our models perform well in predicting 1's but terribly in predicting 0's. To put things into comparison, all 10 predictors ranked by highest relative importance were found to decrease accuracy for 1's classification if removed for the one-step forecast of horizon random forest. Whereas we find 9 predictors in the top 10 for classifying 0's that would improve accuracy if removed.  
 
-**Figure 7** PLACEHOLDER
+
+**Figure 7**
+![Image 1 of Figure 7](https://github.com/hunglung2960/A-SUPERVISED-LEARNING-APPROACH-TO-PREDICTING-INDEX-DIRECTION/blob/c48847837768ba8a302a3bcfba357a3a7f42b6f4/Plot/Rplot.png)
+
 **Note:** E12 & S&P Index time series. E12 was scaled by the ratio of means for clearer visibility. 
 The one variable that did was important for classifying 0's is the 12-month moving sums of earnings on the S&P 500 index (E12). We find that this predictor also shows up repeatedly across forecasting horizons and in the variable importance for bagging. E12 was found to be able to predict downwards movement in S&P index price relatively well as shown in figure 7. And in 2007 and 2014, E12 was able to predict the fall in the S&P Index price before the actual fall in price. Adding more predictors to the dataset that are better able at classifying 0's may be essential to improving model performance. 
-
-
-
 
 
 <!-- Discussion -->
@@ -286,7 +299,13 @@ Overall, be it our results or other researchers’ results, the accuracy is stag
 <!-- Appendix -->
 # Appendix
 
+![Image 1 of Appendix](https://github.com/hunglung2960/A-SUPERVISED-LEARNING-APPROACH-TO-PREDICTING-INDEX-DIRECTION/blob/9f43a124ef54b8b897360ae8679b2a18f739eff4/Appendix/Appendix%20Table%201%20(part%201).png)
 
+
+![Image 2 of Appendix](https://github.com/hunglung2960/A-SUPERVISED-LEARNING-APPROACH-TO-PREDICTING-INDEX-DIRECTION/blob/9f43a124ef54b8b897360ae8679b2a18f739eff4/Appendix/Appendix%20Table%201%20(part%202).png)
+
+
+![Image 3 of Appendix](https://github.com/hunglung2960/A-SUPERVISED-LEARNING-APPROACH-TO-PREDICTING-INDEX-DIRECTION/blob/9f43a124ef54b8b897360ae8679b2a18f739eff4/Appendix/Appendix%20Table%201%20(part%203).png)
 
 
 <!-- Reference -->
