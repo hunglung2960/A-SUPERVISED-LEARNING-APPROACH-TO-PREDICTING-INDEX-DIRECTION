@@ -143,7 +143,8 @@ Hence, the majority of the forecast predictions in the tree model rely on the un
 We also note the poor performance of bagging, boosting, and random forest compared to the basic tree. While boosting and random forest performs decently in the one-step and three-step ahead forecast horizon, performance drops significantly in the twelve-step ahead forecast horizon especially so when compared to the leading models. This could be because we choose to use either default values or theoretical plug-ins to reduce computational complexity rather than use recursive cross-validation to tune parameters. We further investigate this by comparing the same models on default settings to models tune by theoretically incorrect methods that are prevalent in practice. Despite the lack of tunning, we note that random forest consistently performs better than bagging across forecast horizons. We believe that this could be because the predictors included in the dataset are highly correlated. As a result, by decorrelating trees, random forest improves performance over bagging.
 
 
-**Figure 2** **PLACEHOLDER**
+**Figure 2**
+![Image 1 of Figure 2](https://github.com/hunglung2960/A-SUPERVISED-LEARNING-APPROACH-TO-PREDICTING-INDEX-DIRECTION/blob/5835a6861c36da5581097b69b0f3c52b58835921/Plot/bagging1.png)
 
 **Note:** Top 10 class-specific importance measure for one-step forecast horizon bagging computed as mean decrease in accuracy. 
 
@@ -236,9 +237,11 @@ The importance measure by the randomforest package computes variable importance 
 
 
 **Figure 7**
+
 ![Image 1 of Figure 7](https://github.com/hunglung2960/A-SUPERVISED-LEARNING-APPROACH-TO-PREDICTING-INDEX-DIRECTION/blob/c48847837768ba8a302a3bcfba357a3a7f42b6f4/Plot/Rplot.png)
 
 **Note:** E12 & S&P Index time series. E12 was scaled by the ratio of means for clearer visibility. 
+
 The one variable that did was important for classifying 0's is the 12-month moving sums of earnings on the S&P 500 index (E12). We find that this predictor also shows up repeatedly across forecasting horizons and in the variable importance for bagging. E12 was found to be able to predict downwards movement in S&P index price relatively well as shown in figure 7. And in 2007 and 2014, E12 was able to predict the fall in the S&P Index price before the actual fall in price. Adding more predictors to the dataset that are better able at classifying 0's may be essential to improving model performance. 
 
 
