@@ -25,7 +25,7 @@
 	- [Maintaining the good forecasting elements](#maintaining-the-good-forecasting-elements)
 - [Limitations](#limitations)
 - [Conclusion](#conclusion)
-- [Appendix](#Appendix)
+- [Appendix](#appendix)
 - [Reference](#reference)
 - [Remarks](#remarks)
 
@@ -124,6 +124,8 @@ We can see that when we are doing expanding window, the smallest window we have 
 | Twelve-Step | Boosting  | 57  | 56.8  | 3.9  | 90.1  |
 | Twelve-Step | Lasso Logit with theoretical plug-ins  | 52  | 60.6  | 0  | 98.8  |
 
+
+
 **Note:** Forecast performance for one-step, three-step, six-step, twelve-step forecast horizon. 
 
 Overall, we found that most models, except for the twelve-steps ahead forecast using bagging, were able to predict direction at around 55.3 to 62.1 percent accuracy as in figure 1. The relative performance of the models remained similar across the different forecasting horizons with lasso logit and the basic tree having the most consistent performance throughout.  
@@ -158,6 +160,9 @@ One common issue with all models in figure 1 is the lack of ability to correctly
 | Six-Step  | Probit  | 66  | 50.0  | 37.3  | 58.0  |
 | Twelve-Step  | Unconditional Mean  | 51  | 61.4  | 0  | 100  |
 | Twelve-Step | Probit  | 73  | 44.7  | 23.5  | 58.0  |
+
+
+
 **Note:** Benchmark performance for one-step, three-step, six-step, twelve-step forecast horizon. 
 
 In general, there were few models that managed to beat the performance of the unconditional mean. Notably, the lasso logit with theoretical plug-ins in the one-step forecast horizon, boosting in the three-step forecast horizon, and the basic tree in the six-step forecast horizon. Even then, the increase in performance is marginal. Given the upwards trend of the S&P index over the last 30 years, it is not unusual for the unconditional mean to perform so well. The unconditional mean predicts every forecast to be 1, which guarantees decent performance. However, this performance may be unique to the S&P and may not hold for more volatile assets. Moreover, traditional models like the probit perform poorly compared to other models which can capture non-linearity. The probit model is outperformed by all other models, overtaking bagging as the worst-performing model. 
@@ -192,6 +197,10 @@ In practice, it is common to find K-fold CV or LOOCV being used on time-series d
 | Twelve-Step  | Tree selected on CP CV 1SE  | 66  |
 | Twelve-Step  | Boosting  | 57  |
 | Twelve-Step  | Boosting selected on CV  | 51  |
+
+
+
+
 **Note:** Forecast performance for one-step, three-step, six-step, twelve-step forecast horizon using cross-validation & default values. 
 
 Our findings yield mixed results as in figure 4. Selecting the subtree using either the cross-validated minimum or the 1 standard error rule consistently yields worse performance than compared to the default values for building trees. The difference is small in the one-step horizon forecast but grows quickly as the forecast horizon increases. On the other hand, in practice cross-validation for boosting works well. Performance generally either improves or remains close across forecasting horizons. Furthermore, this improvement in performance is more noticeable for the twelve-step horizon forecast. Despite the above findings, it is not clear whether the results are indicative of the usefulness of in practice cross-validation or merely a difference due to sampling error. However, performing cross-validation significantly increases the computational time required to estimate the models, especially so if the model is already very computationally expensive. For example, estimating boosting on default values take approximately 5 minutes, whereas the same estimation with cross-validation takes nearly 2 hours. Given the increase in computational complexity, it is questionable if the benefits as seen in boosting are worth it. 
@@ -282,6 +291,50 @@ Overall, be it our results or other researchers’ results, the accuracy is stag
 
 <!-- Reference -->
 # Reference
+
+Anatolyev, S., & Gospodinov, N. (2010). Modeling financial return dynamics via decomposition. 	Journal of Business and Economic Statistics, 28(2), 232–245.
+
+Ballings, M., Van den Poel, D., Hespeels, N., & Gryp, R. (2015). Evaluating multiple classifiers for stock price direction prediction. EXPERT SYSTEMS WITH APPLICATIONS, 42(20), 7046–7056. doi: 10.1016/j.eswa.2015.05.013
+
+Barberis, N., Greenwood, R., Jin, L. & Shleifer, A. (2018). Extrapolation and bubbles. Journal of 	Financial Economics, 129(1), 203-227. doi: 10.1016/j.jfineco.2018.04.007
+
+Campbell, J. Y. & Thompson, S. B. (2008). Predicting Excess Stock Returns Out of Sample: Can 	Anything Beat the Historical Average? The Review of Financial Studies,21(4), 1509–1531.	doi: 10.1093/rfs/hhm055
+
+Chen, N. F., Roll, R. & Ross, S. (1986) Economic Forces and the Stock Market. Journal of Business, 59(1), 383–403.
+
+Chevapatrakul, T. (2013). Return sign forecasts based on conditional risk: Evidence from the UK stock market index. Journal of Banking and Finance, 37(7), 2342–2353.
+
+Enke, D. & Thawornwong, S. (2005). The use of data mining and neural networks for forecasting stock market returns. Expert Systems with Applications, 29(1), 927-940. doi: 10.1016/j.eswa.2005.06.024
+
+Goyal, A. & Welch, I. (2007). A Comprehensive Look at The Empirical Performance of Equity 	Premium Prediction. The Review of Financial Studies, 21(4), 1455–1508. doi: 10.1093/rfs/hhm014
+
+Haigh, M. S. & List, A. J. (2005). Do Professional Traders Exhibit Myopic Loss Aversion? An Experimental Analysis. Journal of Finance, 60(1), 523-534. doi: 10.1111/j.1540-6261.2005.00737.x
+
+Harvey, D. I., Leybourne, S. J., Sollis, R. & Taylor, A. M. R. (2020). Real‐time detection of regimes of predictability in the US equity premium. Journal of Applied Econometrics, 36(1), 45-70. 	doi: 10.1002/jae.2794
+
+Hasan, A., & Javed, M. T. (2009). Macroeconomic influences and equity market returns: A study of an emerging equity market. Journal of Economics and Economic Education Research, 10(2), 47.
+
+Iworiso, J. & Vrontos, S. (2019). On the directional predictability of equity premium using machine learning techniques. Journal of Forecasting, 39(1), 449-469. doi: 10.1002/for.2632
+
+Kinney, W., Burgstahler, D. & Martin, R. (2002). Earnings Surprise “Materiality” as Measured by Stock Returns. Journal of Accounting Research, 40(5), 1297-1329. doi: 10.1111/1475-679X.t01-1-00055
+
+Lee, Y. J. (2012). The Effect of Quarterly Report Readability on Information Efficiency of Stock 	Prices. Contemporary Accounting Research, 29(4), 1137-1170. doi:10.1111/j.1911-3846.2011.01152.x
+
+Leitch, G., & Tanner, J. (1991). Economic forecast evaluation: Profits versus the conventional error measures. American Economic Review, 81(3), 580–590.
+
+Leung, M. T., Daouk, H., & Chen, A.-S. (2000). Forecasting stock indices: A comparison of classification and level estimation models. International Journal of Forecasting, 16(2), 173–190.
+
+Neely, C. J., Rapach, D. E., Tu, J. & Zhou, G. (2014). Forecasting the Equity Risk Premium: The 	Role of Technical Indicators. Management Science, 60(7):1772-1791. doi: 10.1287/mnsc.2013.1838
+
+Nyberg, H. (2011). Forecasting the direction of the US stock market with dynamic binary probit models. International Journal of Forecasting, 27(2), 561–578. doi: 10.1016/j.ijforecast.2010.02.008
+
+Pesaran, M. H., & Timmermann, A. (1995). Predictability of stock returns: Robustness and economic significance. Journal of Finance, 50(4), 1201–1228.
+
+Skinner, D.J. & Sloan, R.G. (2002). Earnings Surprises, Growth Expectations, and Stock Returns or Don't Let an Earnings Torpedo Sink Your Portfolio. Review of Accounting Studies, 7(1), 289–312. doi: 10.1023/A:1020294523516
+
+Valadkhani, A. & Smyth, R. (2017). How do daily changes in oil prices affect US monthly industrial output? Energy Economic, 67(1), 83-90. doi: 10.1016/j.eneco.2017.08.009
+
+
 
 
 
